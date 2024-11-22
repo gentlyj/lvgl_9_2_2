@@ -75,6 +75,10 @@ static const demo_entry_info_t demos_entry_info[] = {
     { "benchmark", .entry_cb = lv_demo_benchmark },
 #endif
 
+#if LV_USE_VTKING_DEMO
+    { "vtking", .entry_cb = lv_demo_vtking_create },
+#endif
+
     { "", .entry_cb = NULL }
 };
 

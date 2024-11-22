@@ -59,6 +59,23 @@ extern "C" {
 #include "render/lv_demo_render.h"
 #endif
 
+#if LV_USE_VTKING_DEMO
+#include "vtking/lv_demo_vtking.h"
+#endif
+
+/**********************
+ *      MACROS
+ **********************/
+
+/**********************
+ *   GLOBAL FUNCTIONS
+ **********************/
+
+/**
+ * Call lv_demo_xxx.
+ * @param   info the information which contains demo name and parameters
+ *               needs by lv_demo_xxx.
+
 /*********************
  *      DEFINES
  *********************/
