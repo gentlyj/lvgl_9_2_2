@@ -174,7 +174,11 @@ void lv_text_ap_proc(const char * txt, char * txt_out)
             continue;   // Skip this character
         }
         else if(lv_text_is_arabic_vowel(ch_enc[i + 1])) {    // Next character is a vowel
-            idx_next = lv_ap_get_char_index(ch_enc[i + 2]); // Skip the vowel character to join with the character after it
+            if(lv_text_is_arabic_vowel(ch_enc[i + 2])){
+                idx_next = lv_ap_get_char_index(ch_enc[i + 3]); // Skip the vowel character to join with the character after it
+            }else{
+                idx_next = lv_ap_get_char_index(ch_enc[i + 2]); // Skip the vowel character to join with the character after it
+            }
         }
 
         if(index_current == LV_UNDEF_ARABIC_PERSIAN_CHARS) {
@@ -201,7 +205,6 @@ void lv_text_ap_proc(const char * txt, char * txt_out)
             j++;
             continue;
         }
-
         if(conjunction_to_previous && conjunction_to_next)
             ch_fin[j] = ap_chars_map[index_current].char_end_form + ap_chars_map[index_current].char_middle_form_offset;
         else if(!conjunction_to_previous && conjunction_to_next)
@@ -295,7 +298,7 @@ static uint32_t lv_text_lam_alef(uint32_t ch_curr, uint32_t ch_next)
 
 static bool lv_text_is_arabic_vowel(uint16_t c)
 {
-    return (c >= 0x064B) && (c <= 0x0652);
+    return (c >= 0x064B) && (c <= 0x0652) || c == 0x64e;
 }
 
 #endif

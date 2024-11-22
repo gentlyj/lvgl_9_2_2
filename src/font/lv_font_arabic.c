@@ -35,7 +35,7 @@ typedef struct{
 static x_header_t __g_xbf_hd = {
     .min = 0x000a,
     .max = 0xfefc,
-    .bpp = 2,
+    .bpp = 4,
 };
 
 
@@ -51,11 +51,11 @@ static uint8_t *__user_font_getdata(int offset, int size){
     }
 
     if (fpFont) {
-        printf("@@@@@@@ open font success--------------\n");
+        // printf("@@@@@@@ open font success--------------\n");
         fseek(fpFont, offset, SEEK_SET);
         fread(__g_font_buf, size, 1, fpFont);
     }else{
-        printf("@@@@@@@ open font failed--------------\n");
+        // printf("@@@@@@@ open font failed--------------\n");
     }
     return __g_font_buf;
 }
@@ -91,7 +91,7 @@ static bool __user_font_get_glyph_dsc(const lv_font_t * font, lv_font_glyph_dsc_
         dsc_out->ofs_x = gdsc->ofs_x;
         dsc_out->ofs_y = gdsc->ofs_y;
         // dsc_out->bpp   = __g_xbf_hd.bpp;
-        dsc_out->format = LV_FONT_GLYPH_FORMAT_A2;
+        dsc_out->format = LV_FONT_GLYPH_FORMAT_A4;
         return true;
     }
     return false;
@@ -104,7 +104,7 @@ static bool __user_font_get_glyph_dsc(const lv_font_t * font, lv_font_glyph_dsc_
 const lv_font_t lv_font_arabic = {
     .get_glyph_bitmap = __user_font_get_bitmap,
     .get_glyph_dsc = __user_font_get_glyph_dsc,
-    .line_height = 74,
+    .line_height = 28,
     .base_line = 0,
 };
 
